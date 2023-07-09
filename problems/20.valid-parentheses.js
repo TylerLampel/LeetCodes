@@ -1,0 +1,31 @@
+/*
+ * @lc app=leetcode id=20 lang=javascript
+ *
+ * [20] Valid Parentheses
+ */
+
+// @lc code=start
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isValid = function (s) {
+  let stack = [];
+  for (let c of s) {
+    if (c === "(" || c === "{" || c === "[") {
+      stack.push(c);
+    } else {
+      if (
+        !stack.length ||
+        (c === ")" && stack[stack.length - 1] !== "(") ||
+        (c === "}" && stack[stack.length - 1] !== "{") ||
+        (c === "]" && stack[stack.length - 1] !== "[")
+      ) {
+        return false;
+      }
+      stack.pop();
+    }
+  }
+  return !stack.length;
+};
+// @lc code=end
